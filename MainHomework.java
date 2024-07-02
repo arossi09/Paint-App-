@@ -27,11 +27,9 @@ public class MainHomework extends JFrame {
 		drawPanel.addMouseListener(mouseNanny); // new line compared to version 1.0
 		drawPanel.addMouseMotionListener(mouseNanny);
 		Officer.setDrawPanel(drawPanel); // new line compared to version 2.0
-		JPanel toolPanel = new ToolPanel();
-		JPanel statusPanel = new StatusPanel();
+		JMenuBar menuBar = new MenuBar();
 		setLayout(new BorderLayout());
-		add(toolPanel, BorderLayout.WEST);
-		add(statusPanel, BorderLayout.SOUTH);
+		add(menuBar,BorderLayout.NORTH);
 		add(drawPanel, BorderLayout.CENTER);
 	}
 	

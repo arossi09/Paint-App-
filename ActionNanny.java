@@ -13,38 +13,39 @@ import java.awt.event.ActionListener;
  * @version 2.0
  */
 public class ActionNanny implements ActionListener {
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() instanceof JComboBox) {
-			JComboBox comboBox = (JComboBox) e.getSource();
-			if (comboBox.getSelectedItem().equals("Black")) {
+		if (e.getSource() instanceof JMenuItem) {
+			JMenuItem menuItem= (JMenuItem) e.getSource();
+			if (menuItem.getActionCommand().equals("Black")) {
 				Officer.setColor(Color.BLACK);
-			} else if (comboBox.getSelectedItem().equals("Red")) {
+			} else if (menuItem.getActionCommand().equals("Red")) {
 				Officer.setColor(Color.RED);
-			} else if (comboBox.getSelectedItem().equals("Blue")) {
+			} else if (menuItem.getActionCommand().equals("Blue")) {
 				Officer.setColor(Color.BLUE);
-			} else if (comboBox.getSelectedItem().equals("Green")) {
+			} else if (menuItem.getActionCommand().equals("Green")) {
 				Officer.setColor(Color.GREEN);
-			} else if (comboBox.getSelectedItem().equals("Yellow")) {
+			} else if (menuItem.getActionCommand().equals("Yellow")) {
 				Officer.setColor(Color.YELLOW);
-			} else if (comboBox.getSelectedItem().equals("Orange")) {
+			} else if (menuItem.getActionCommand().equals("Orange")) {
 				Officer.setColor(Color.ORANGE);
-			} else if (comboBox.getSelectedItem().equals("Pink")) {
+			} else if (menuItem.getActionCommand().equals("Pink")) {
 				Officer.setColor(Color.PINK);
-			}
-		} else if (e.getSource() instanceof JRadioButton) {
-			Officer.setShape(e.getActionCommand());
-		} else if(e.getSource() instanceof  JButton){
-			JButton button = (JButton) e.getSource();
-			if(button.getActionCommand().equals("Undo")){
+			} else if(menuItem.getActionCommand().equals("undo")){
+				System.out.println("undo");
 				//undo functionaility
-			}else if(button.getActionCommand().equals("Erase")){
+			}else if(menuItem.getActionCommand().equals("erase")){
+				System.out.println("erase");
 				//erase functionaility
-			}else if(button.getActionCommand().equals("Redo")) {
+			}else if(menuItem.getActionCommand().equals("redo")) {
+				System.out.println("redo");
 				//redo functionaility
+			}else{
+				System.out.println(e.getActionCommand());
+				Officer.setShape(e.getActionCommand());
 			}
 		}
 	}
-	
+
 }
