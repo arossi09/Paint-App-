@@ -11,48 +11,72 @@ import java.awt.event.MouseMotionListener;
  * @author javiergs
  * @version 2.0
  */
-public class MouseNanny implements MouseListener, MouseMotionListener {
+	/**
+	 * MouseNanny listens for mouse events.
+	 * Send information to Officer.
+	 *
+	 * @author javiergs
+	 * @version 2.0
+	 */
+	public class MouseNanny implements MouseListener, MouseMotionListener {
 
-	int tempx;
-	int tempy;
-	public void mouseClicked(MouseEvent e) {
-	}
-	
-	public void mouseEntered(MouseEvent e) {
-	}
-	
-	public void mouseExited(MouseEvent e) {
-	}
-	
-	public void mousePressed(MouseEvent e) {
-		tempx = e.getX();
-		tempy = e.getY();
+		int tempx;
+		int tempy;
+		public void mouseClicked(MouseEvent e) {
+		}
 
-	}
-	
-	public void mouseReleased(MouseEvent e) {
-		int x = e.getX();
-		int y = e.getY();
-		if(Officer.getShape().equals("Rectangle")){
+		public void mouseEntered(MouseEvent e) {
+		}
 
-			Officer.pushToStack(new Rectangle(tempx, tempy, x - tempx, y - tempy, Officer.getColor()));
+		public void mouseExited(MouseEvent e) {
+		}
+
+		public void mousePressed(MouseEvent e) {
+			tempx = e.getX();
+			tempy = e.getY();
 
 		}
-		//Officer.setWidth(x - Officer.getX());
-		//Officer.setHeight(y - Officer.getY());
-		Officer.tellYourBoss();
-	}
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		int x = e.getX();
-		int y = e.getY();
-		Officer.setBox(tempx, tempy, x -tempx, y-tempy, Officer.getColor());
-		Officer.tellYourBoss();
-	}
+		public void mouseReleased(MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			if(Officer.getShape().equals("Rectangle")){
+				Officer.pushToStack(new Rectangle(tempx, tempy, x - tempx, y - tempy, Officer.getColor()));
+			}
+			else if(Officer.getShape().equals("Circle")){
+				Officer.pushToStack(new Circle(tempx, tempy, x-tempx, y-tempy, Officer.getColor()));
+			}
+			else if(Officer.getShape().equals("Arc")){
+				Officer.pushToStack(new Arc(tempx, tempy, x - tempx, y - tempy, Officer.getColor()));
+			}
 
-	@Override
-	public void mouseMoved(MouseEvent e) {
+			Officer.tellYourBoss();
+		}
 
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			if(Officer.getShape().equals("Rectangle")){
+				Officer.setBox(tempx, tempy, x - tempx, y-tempy, Officer.getColor());
+				Officer.setOval(0,0,0,0,Officer.getColor());
+				Officer.setArc(0,0,0,0,Officer.getColor());
+			}
+			else if(Officer.getShape().equals("Circle")){
+				Officer.setOval(tempx, tempy, x - tempx, y-tempy, Officer.getColor());
+				Officer.setBox(0,0,0, 0, Officer.getColor());
+				Officer.setArc(0,0,0,0,Officer.getColor());
+			}
+			else if(Officer.getShape().equals("Arc")){
+				Officer.setArc(tempx, tempy, x - tempx, y - tempy, Officer.getColor());
+				Officer.setBox(0,0,0, 0, Officer.getColor());
+				Officer.setOval(0,0,0,0,Officer.getColor());
+			}
+			Officer.tellYourBoss();
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) {
+
+		}
 	}
-}

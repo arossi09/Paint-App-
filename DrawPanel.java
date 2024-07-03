@@ -28,6 +28,8 @@ public class DrawPanel extends JPanel {
 			Officer.getStack().get(x).draw(g);
 		}
 		Officer.getBox().draw(g);
+		Officer.getOval().draw(g);
+		Officer.getArc().draw(g);
 	}
 	
 }
