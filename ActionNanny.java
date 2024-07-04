@@ -34,12 +34,15 @@ public class ActionNanny implements ActionListener {
 				Officer.setColor(Color.PINK);
 			} else if(menuItem.getActionCommand().equals("undo")){
 				System.out.println("undo");
-				//undo functionaility
+				Officer.undo();
 			}else if(menuItem.getActionCommand().equals("erase")){
 				System.out.println("erase");
+				Officer.setErased(true);
+				Officer.erase();
 				//erase functionaility
 			}else if(menuItem.getActionCommand().equals("redo")) {
 				System.out.println("redo");
+				Officer.redo();
 				//redo functionaility
 			}else{
 				System.out.println(e.getActionCommand());

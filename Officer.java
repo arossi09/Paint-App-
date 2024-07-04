@@ -21,6 +21,8 @@ import java.util.Stack;
 
 		static Stack<Shape> deletedShapes = new Stack<Shape>();
 
+		static boolean erased = false;
+
 		public static Box getBox() {
 			return box;
 		}
@@ -57,6 +59,9 @@ import java.util.Stack;
 		public static Stack<Shape> getStack() {
 			return shapes;
 		}
+		public static Stack<Shape> getDeletedShapes() {
+			return deletedShapes;
+		}
 		public static void pushToStack(Shape shape){
 			shapes.push(shape);
 		}
@@ -65,6 +70,54 @@ import java.util.Stack;
 			pushToDeleted(shapes.pop());
 		}
 
+		public static void undo(){
+
+			if (erased) {
+				Officer.loopStacks(deletedShapes, shapes);
+				Officer.tellYourBoss();
+
+
+			}
+			else {
+				if (shapes.isEmpty()){
+					return;
+				}
+				pushToDeleted(shapes.pop());
+				Officer.tellYourBoss();
+
+			}
+		}
+		public static void redo(){
+
+			if (erased) {
+				Officer.loopStacks(shapes, deletedShapes);
+				Officer.tellYourBoss();
+			}
+			else
+			{
+				if (deletedShapes.isEmpty()){
+					return;
+				}
+				pushToStack(deletedShapes.pop());
+				Officer.tellYourBoss();
+			}
+		}
+
+		public static void loopStacks (Stack<Shape> source, Stack<Shape> dest){
+			while (!source.isEmpty()) {
+				dest.push(source.pop());
+			}
+		}
+
+		public static void setErased(boolean update) {
+			erased = update;
+		}
+		public static void erase() {
+			Officer.loopStacks(Officer.getDeletedShapes(), new Stack<Shape>()); //clear deleted
+			Officer.loopStacks(shapes, deletedShapes);
+			Officer.tellYourBoss();
+
+		}
 
 		private static Color color;
 		private static String shape;

@@ -1,8 +1,10 @@
 package javiergs.gui.paint.gamma;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Stack;
 
 /**
  * MouseNanny listens for mouse events.
@@ -38,6 +40,12 @@ import java.awt.event.MouseMotionListener;
 		}
 
 		public void mouseReleased(MouseEvent e) {
+			Officer.setErased(false);
+			Officer.setBox(0,0,0,0, Color.BLACK);
+			Officer.setArc(0,0,0,0,Color.BLACK);
+			Officer.setOval(0,0,0,0,Color.BLACK);
+			//Officer.loopStacks(Officer.getDeletedShapes(), new Stack<Shape>());
+
 			int x = e.getX();
 			int y = e.getY();
 			if(Officer.getShape().equals("Rectangle")){
