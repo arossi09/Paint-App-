@@ -1,3 +1,4 @@
+
 package javiergs.gui.paint.gamma;
 
 import javax.swing.*;
@@ -7,7 +8,7 @@ import java.awt.*;
  * MainHomework creates a frame and adds three panels to it.
  * This version adds MouseListener to the DrawPanel.
  *
- * @author javiergs
+ * @author javiergs, Blake, Noa, Steven, Anthony
  * @version 2.0
  */
 public class MainHomework extends JFrame {
