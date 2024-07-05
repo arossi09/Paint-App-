@@ -1,0 +1,39 @@
+Due Monday: Paint 2.0
+
+Clicking on shape allows you to select it. Then we can change color by selecting a new one
+Or drag and drop to change its location.
+
+Consider a method "Contains" that calcs if something is contained inside a shape
+//attribute selected in shape as a true/false. This will need a setter.
+//so we need a selected outline, draw the outline from the outline methods probably
+// when you choose a new color, needs to check for a selected shape I guess to change that fill color
+//undo doesn’t have to work for a color change
+
+Drag&Drop
+
+If the first click is on an empty space, but if over a shape, we will drag it. Not a click but a "press" on
+A shape.
+If you want to do it with something other than a click, like double or Cntrl+click
+
+Edit Menu
+
+Add menu options with Copy/Paste. By selecting a shape and then copy and then paste a new shape,
+The copied one appears 10pixels right and below the original
+
+KeyboardListener
+Make it work for CTRL+C and CTRL+V
+
+File Menu
+Save and Load our draws. Add an option New for cleaning all.
+//probably something like saving 1,2,3,4,5,6 /n and a getLine version in java
+
+Low prio work
+Lines besides Rectangle, Oval, Arc. Changing line thickness
+
+About Menu
+DialogBox just use JDialogueBox
+
+Drawing from Bottom up and from right to left. //this is like 2 if statements on temp>current
+
+Class Diagram
+Share/Include in submission
