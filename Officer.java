@@ -184,4 +184,61 @@ import java.util.Stack;
 			drawPanel = d;
 		}
 
+		public static void CreateMenu(MainHomework hw){
+			ActionNanny actionNanny = new ActionNanny();
+			JMenu colorMenu = new JMenu("Colors");
+			ButtonGroup colorGroup = new ButtonGroup();
+			String[] colors = {"Black", "Red", "Blue", "Green", "Yellow", "Orange", "Pink"};
+			for(String color : colors){
+				JRadioButtonMenuItem colorItem;
+				colorItem = new JRadioButtonMenuItem(color);
+
+				colorItem.addActionListener(actionNanny);
+				colorGroup.add(colorItem);
+				colorMenu.add(colorItem);
+			}
+
+			JMenu edit = new JMenu("Edit");
+			ButtonGroup editGroup = new ButtonGroup();
+			JMenuItem undo = new JMenuItem("undo");
+			JMenuItem redo = new JMenuItem("redo");
+			JMenuItem erase = new JMenuItem("erase");
+			edit.add(undo);
+			edit.add(redo);
+			edit.add(erase);
+			editGroup.add(undo);
+			editGroup.add(redo);
+			editGroup.add(erase);
+
+			undo.addActionListener(actionNanny); // new line compared to version 1.0
+			redo.addActionListener(actionNanny); // new line compared to version 1.0
+			erase.addActionListener(actionNanny);
+
+
+
+			JMenu shapes = new JMenu("Shapes");
+			ButtonGroup shapeGroup = new ButtonGroup();
+			JRadioButtonMenuItem rectangle = new JRadioButtonMenuItem("Rectangle");
+			JRadioButtonMenuItem circle = new JRadioButtonMenuItem("Circle");
+			JRadioButtonMenuItem arc = new JRadioButtonMenuItem("Arc");
+			shapes.add(rectangle);
+			shapes.add(circle);
+			shapes.add(arc);
+			shapeGroup.add(rectangle);
+			shapeGroup.add(circle);
+			shapeGroup.add(arc);
+
+			rectangle.addActionListener(actionNanny);
+			circle.addActionListener(actionNanny);
+			arc.addActionListener(actionNanny);
+
+			JMenuBar menuBar = new JMenuBar();
+			menuBar.add(colorMenu);
+			menuBar.add(edit);
+			menuBar.add(shapes);
+
+			hw.setJMenuBar(menuBar);
+
+
+		}
 	}
