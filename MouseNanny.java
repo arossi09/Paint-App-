@@ -11,6 +11,9 @@ import java.util.Stack;
  * Send information to Officer.
  *
  * @author javiergs
+ * @author
+ * @author Blake Masters
+ *
  * @version 2.0
  */
 	/**
@@ -36,15 +39,18 @@ import java.util.Stack;
 		public void mousePressed(MouseEvent e) {
 			tempx = e.getX();
 			tempy = e.getY();
-
+			//TODO: Choose between pressed and clicked for selection
+			// either should look like the following
+			// select = Officer.getShapeAt(tempx, tempy);
 		}
 
 		public void mouseReleased(MouseEvent e) {
+			//TODO: Set global selected boolean to prevent this on release
 			Officer.setErased(false);
 			Officer.setBox(0,0,0,0, Color.BLACK);
 			Officer.setArc(0,0,0,0,Color.BLACK);
 			Officer.setOval(0,0,0,0,Color.BLACK);
-			//Officer.loopStacks(Officer.getDeletedShapes(), new Stack<Shape>());
+
 
 			int x = e.getX();
 			int y = e.getY();
