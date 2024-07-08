@@ -224,6 +224,7 @@ public class Officer {
 				selectedShape = shape;
 				return;
 			}
+			shape.setSelected(false);
 		}
 		System.out.println("No shape found!");
 		selectedShape = null;
