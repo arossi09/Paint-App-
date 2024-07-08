@@ -45,12 +45,12 @@ import java.util.Stack;
 			Officer.setArc(0,0,0,0,Color.BLACK);
 			Officer.setOval(0,0,0,0,Color.BLACK);
 			Officer.setLine(0,0,0,0,Color.BLACK);
-			//Officer.loopStacks(Officer.getDeletedShapes(), new Stack<Shape>());
+
 
 			int x = e.getX();
 			int y = e.getY();
 			if(Officer.getShape().equals("Rectangle")){
-				Officer.pushToStack(new Rectangle(tempx, tempy, x - tempx, y - tempy, Officer.getColor()));
+				Officer.pushToStack(new Rectangle(tempx, tempy, x-tempx, y-tempy, Officer.getColor()));
 			}
 			else if(Officer.getShape().equals("Circle")){
 				Officer.pushToStack(new Circle(tempx, tempy, x-tempx, y-tempy, Officer.getColor()));
@@ -70,7 +70,7 @@ import java.util.Stack;
 			int x = e.getX();
 			int y = e.getY();
 			if(Officer.getShape().equals("Rectangle")){
-				Officer.setBox(tempx, tempy, x - tempx, y-tempy, Officer.getColor());
+				Officer.setBox(tempx, tempy, x-tempx, y-tempy, Officer.getColor());
 				Officer.setOval(0,0,0,0,Officer.getColor());
 				Officer.setArc(0,0,0,0,Officer.getColor());
 				Officer.setLine(0,0,0,0, Officer.getColor());
