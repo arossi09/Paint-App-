@@ -10,5 +10,10 @@ public class CircleOutline extends Shape{
         if(getW() != 0 && getH() != 0){g.drawOval(getX(),getY(),getW(),getH());}
 
     }
+
+    @Override
+    public boolean contains(int x, int y) {
+        return false;
+    }
 }
 

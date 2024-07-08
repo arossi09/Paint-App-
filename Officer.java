@@ -203,6 +203,16 @@ public class Officer {
 		return shape==null?"Rectangle":shape;
 	}
 
+	public static boolean getShapeAt(int x, int y) {
+		for (Shape shape : shapes) {
+			if (shape.contains(x, y)) {
+				shape.setSelected(true);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static void setShape(String shape) {
 		Officer.shape = shape;
 	}

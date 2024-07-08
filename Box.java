@@ -11,4 +11,9 @@ public class Box extends Shape{
         if(getW() != 0 && getH() != 0){g.drawRect(getX(),getY(),getW(),getH());}
 
     }
+
+    @Override
+    public boolean contains(int x, int y) {
+        return false;
+    }
 }

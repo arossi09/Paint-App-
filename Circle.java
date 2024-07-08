@@ -22,4 +22,11 @@ public class Circle extends Shape{
         // TODO: copy mutable state here, so the clone can't change the internals of the original
         return clone;
     }
+
+    @Override
+    public boolean contains(int x, int y) {
+        double dx = x - (getX() + getW() / 2.0);
+        double dy = y - (getY() + getH() / 2.0);
+        return (dx * dx) / (getW() * getW() / 4.0) + (dy * dy) / (getH() * getH() / 4.0) <= 1;
+    }
 }

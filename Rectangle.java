@@ -26,5 +26,13 @@ public class Rectangle extends Shape{
         // TODO: copy mutable state here, so the clone can't change the internals of the original
         return clone;
     }
+
+    @Override
+    public boolean contains(int x, int y) {
+        return (x >= this.getX() && x <= this.getX() + this.getW() &&
+                y >= this.getY() && y <= this.getY() + this.getH());
+    }
+
+
 }
 
