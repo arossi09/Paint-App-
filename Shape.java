@@ -1,11 +1,14 @@
 package javiergs.gui.paint.gamma;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class Shape {
+public abstract class Shape implements Cloneable, Serializable {
     private Color color;
     private int x,y,w,h;
 
+    public Shape(){
+    }
 
 
     public int getH() {
@@ -48,6 +51,17 @@ public abstract class Shape {
     }
 
     public abstract void draw(Graphics g);
-    //getters and setters
+
+    @Override
+    public Shape clone() {
+        try {
+            Shape clone = (Shape) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
 
 }
