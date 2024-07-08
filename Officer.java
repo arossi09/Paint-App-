@@ -67,7 +67,9 @@ public class Officer {
 			Shape newShape = clipBoardShape.clone();
 			newShape.setX(clipBoardShape.getX()+10);
 			newShape.setY(clipBoardShape.getY()+10);
+			newShape.setColor(getColor());
 			shapes.add(newShape);
+			selectedShape = newShape.clone();
 			return;
 		}
 		System.out.println("No shape copied to clipboard to paste!");
@@ -214,14 +216,18 @@ public class Officer {
 		return shape==null?"Rectangle":shape;
 	}
 
-	public static boolean getShapeAt(int x, int y) {
+	public static void getShapeAt(int x, int y) {
 		for (Shape shape : shapes) {
 			if (shape.contains(x, y)) {
+				System.out.println("Found shape!");
 				shape.setSelected(true);
-				return true;
+				selectedShape = shape;
+				return;
 			}
 		}
-		return false;
+		System.out.println("No shape found!");
+		selectedShape = null;
+
 	}
 
 	public static void setShape(String shape) {
