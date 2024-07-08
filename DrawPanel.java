@@ -30,6 +30,7 @@ public class DrawPanel extends JPanel {
 		Officer.getBox().draw(g);
 		Officer.getOval().draw(g);
 		Officer.getArc().draw(g);
+		Officer.getLine().draw(g);
 	}
 	
 }

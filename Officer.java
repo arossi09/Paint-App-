@@ -23,6 +23,7 @@ public class Officer {
 	static Shape clipBoardShape;
 
 	static ArcOutline arc = new ArcOutline();
+	static Line line = new Line();
 	static Stack<Shape> shapes = new Stack<Shape>();
 
 	static Stack<Shape> deletedShapes = new Stack<Shape>();
@@ -99,6 +100,13 @@ public class Officer {
 		arc.setH(h);
 		arc.setColor(color);
 	}
+	public static void setLine(int x, int y, int x2, int y2, Color color){
+		line.setX(x);
+		line.setX2(x2);
+		line.setY(y);
+		line.setY2(y2);
+		line.setColor(color);
+	}
 
 	public static CircleOutline getOval(){
 		return circle;
@@ -106,6 +114,9 @@ public class Officer {
 
 	public static ArcOutline getArc(){
 		return arc;
+	}
+	public static Line getLine(){
+		return line;
 	}
 
 
@@ -322,16 +333,20 @@ public class Officer {
 		JRadioButtonMenuItem rectangle = new JRadioButtonMenuItem("Rectangle");
 		JRadioButtonMenuItem circle = new JRadioButtonMenuItem("Circle");
 		JRadioButtonMenuItem arc = new JRadioButtonMenuItem("Arc");
+		JRadioButtonMenuItem line = new JRadioButtonMenuItem("Line");
 		shapes.add(rectangle);
 		shapes.add(circle);
 		shapes.add(arc);
+		shapes.add(line);
 		shapeGroup.add(rectangle);
 		shapeGroup.add(circle);
 		shapeGroup.add(arc);
+		shapeGroup.add(line);
 
 		rectangle.addActionListener(actionNanny);
 		circle.addActionListener(actionNanny);
 		arc.addActionListener(actionNanny);
+		line.addActionListener(actionNanny);
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(file);

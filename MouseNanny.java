@@ -44,6 +44,7 @@ import java.util.Stack;
 			Officer.setBox(0,0,0,0, Color.BLACK);
 			Officer.setArc(0,0,0,0,Color.BLACK);
 			Officer.setOval(0,0,0,0,Color.BLACK);
+			Officer.setLine(0,0,0,0,Color.BLACK);
 			//Officer.loopStacks(Officer.getDeletedShapes(), new Stack<Shape>());
 
 			int x = e.getX();
@@ -57,6 +58,9 @@ import java.util.Stack;
 			else if(Officer.getShape().equals("Arc")){
 				Officer.pushToStack(new Arc(tempx, tempy, x - tempx, y - tempy, Officer.getColor()));
 			}
+			else if(Officer.getShape().equals("Line")){
+				Officer.pushToStack(new Line(tempx, tempy, x , y, 1,  Officer.getColor()));
+			}
 
 			Officer.tellYourBoss();
 		}
@@ -69,14 +73,23 @@ import java.util.Stack;
 				Officer.setBox(tempx, tempy, x - tempx, y-tempy, Officer.getColor());
 				Officer.setOval(0,0,0,0,Officer.getColor());
 				Officer.setArc(0,0,0,0,Officer.getColor());
+				Officer.setLine(0,0,0,0, Officer.getColor());
 			}
 			else if(Officer.getShape().equals("Circle")){
 				Officer.setOval(tempx, tempy, x - tempx, y-tempy, Officer.getColor());
 				Officer.setBox(0,0,0, 0, Officer.getColor());
 				Officer.setArc(0,0,0,0,Officer.getColor());
+				Officer.setLine(0,0,0,0, Officer.getColor());
 			}
 			else if(Officer.getShape().equals("Arc")){
 				Officer.setArc(tempx, tempy, x - tempx, y - tempy, Officer.getColor());
+				Officer.setBox(0,0,0, 0, Officer.getColor());
+				Officer.setOval(0,0,0,0,Officer.getColor());
+				Officer.setLine(0,0,0,0, Officer.getColor());
+			}
+			else if(Officer.getShape().equals("Line")){
+				Officer.setLine(tempx, tempy, x , y , Officer.getColor());
+				Officer.setArc(0,0,0,0,Officer.getColor());
 				Officer.setBox(0,0,0, 0, Officer.getColor());
 				Officer.setOval(0,0,0,0,Officer.getColor());
 			}
