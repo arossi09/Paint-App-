@@ -19,5 +19,12 @@ public class Rectangle extends Shape{
         g.setColor(getColor());
         g.fillRect(getX(),getY(),getW(),getH());
     }
+
+    @Override
+    public Rectangle clone() {
+        Rectangle clone = (Rectangle) super.clone();
+        // TODO: copy mutable state here, so the clone can't change the internals of the original
+        return clone;
+    }
 }
 

@@ -17,4 +17,10 @@ public class Arc extends Shape{
         g.setColor(getColor());
         g.fillArc(getX(), getY(), getW(), getH(), 0, 180);
     }
+    @Override
+    public Arc clone() {
+        Arc clone = (Arc) super.clone();
+        // TODO: copy mutable state here, so the clone can't change the internals of the original
+        return clone;
+    }
 }

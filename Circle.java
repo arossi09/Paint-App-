@@ -16,4 +16,10 @@ public class Circle extends Shape{
         g.setColor(getColor());
         g.fillOval(getX(), getY(), getW(), getH());
     }
+    @Override
+    public Circle clone() {
+        Circle clone = (Circle) super.clone();
+        // TODO: copy mutable state here, so the clone can't change the internals of the original
+        return clone;
+    }
 }
