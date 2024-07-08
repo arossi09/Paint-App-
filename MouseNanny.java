@@ -61,6 +61,9 @@ public class MouseNanny implements MouseListener, MouseMotionListener {
 		else if(Officer.getShape().equals("Arc")){
 			Officer.pushToStack(new Arc(tempx, tempy, x - tempx, y - tempy, Officer.getColor()));
 		}
+		else if(Officer.getShape().equals("Line")){
+			Officer.pushToStack(new Line(tempx, tempy, x, y, 1, Officer.getColor()));
+		}
 
 		Officer.tellYourBoss();
 	}
@@ -73,16 +76,25 @@ public class MouseNanny implements MouseListener, MouseMotionListener {
 			Officer.setBox(tempx, tempy, x - tempx, y-tempy, Officer.getColor());
 			Officer.setOval(0,0,0,0,Officer.getColor());
 			Officer.setArc(0,0,0,0,Officer.getColor());
+			Officer.setLine(0, 0, 0, 0, Officer.getColor());
 		}
 		else if(Officer.getShape().equals("Circle")){
 			Officer.setOval(tempx, tempy, x - tempx, y-tempy, Officer.getColor());
 			Officer.setBox(0,0,0, 0, Officer.getColor());
 			Officer.setArc(0,0,0,0,Officer.getColor());
+			Officer.setLine(0, 0, 0, 0, Officer.getColor());
 		}
 		else if(Officer.getShape().equals("Arc")){
 			Officer.setArc(tempx, tempy, x - tempx, y - tempy, Officer.getColor());
 			Officer.setBox(0,0,0, 0, Officer.getColor());
 			Officer.setOval(0,0,0,0,Officer.getColor());
+			Officer.setLine(0, 0, 0, 0, Officer.getColor());
+		}
+		else if(Officer.getShape().equals("Line")){
+			Officer.setLine(tempx, tempy, x, y, Officer.getColor());
+			Officer.setArc(0, 0, 0, 0, Officer.getColor());
+			Officer.setBox(0, 0, 0, 0, Officer.getColor());
+			Officer.setOval(0, 0, 0, 0, Officer.getColor());
 		}
 		Officer.tellYourBoss();
 	}
