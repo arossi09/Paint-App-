@@ -7,6 +7,12 @@ public abstract class Shape implements Cloneable, Serializable {
     private Color color;
     private int x,y,w,h;
 
+    private boolean selected = false;
+
+    public void setSelected(boolean setter) {
+        selected = setter;
+    }
+
     public Shape(){
     }
 
@@ -63,5 +69,6 @@ public abstract class Shape implements Cloneable, Serializable {
         }
     }
 
+    public abstract boolean contains(int x, int y);
 
 }
