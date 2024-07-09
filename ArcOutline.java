@@ -1,6 +1,10 @@
 package javiergs.gui.paint.gamma;
 import java.awt.*;
 
+/**
+ * @author steven
+ * @version 3.0
+ */
 public class ArcOutline extends Shape{
     @Override
     public void draw(Graphics g) {

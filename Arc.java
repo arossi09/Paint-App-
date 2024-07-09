@@ -1,6 +1,9 @@
 package javiergs.gui.paint.gamma;
 import java.awt.*;
-
+/**
+ * @author steven
+ * @version 3.0
+ */
 public class Arc extends Shape{
     public Arc(int x1,int y1,int w1,int h1, Color color1){
         setColor(color1);

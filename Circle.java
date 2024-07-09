@@ -1,7 +1,16 @@
 package javiergs.gui.paint.gamma;
 
 import java.awt.*;
-
+/**
+ * DrawPanel creates a panel where the drawing is done.
+ * According to the data in Officer.
+ *
+ * @author javiergs
+ * @aythor anthony
+ * @author steven
+ * @author Blake
+ * @version 3.0
+ */
 public class Circle extends Shape{
     public Circle(int x1,int y1,int w1,int h1, Color color1){
         setColor(color1);

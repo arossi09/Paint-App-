@@ -2,6 +2,11 @@ package javiergs.gui.paint.gamma;
 
 import java.awt.*;
 
+/**
+ *
+ * @author steven
+ * @version 3.0
+ */
 public class CircleOutline extends Shape{
 
     @Override

@@ -8,6 +8,8 @@ import java.awt.*;
  * According to the data in Officer.
  *
  * @author javiergs
+ * @aythor anthony
+ * @author steven
  * @version 3.0
  */
 public class DrawPanel extends JPanel {

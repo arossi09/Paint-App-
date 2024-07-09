@@ -2,7 +2,11 @@ package javiergs.gui.paint.gamma;
 
 import java.awt.*;
 import java.io.Serializable;
-
+/**
+ * @aythor anthony
+ * @author blake
+ * @version 3.0
+ */
 public abstract class Shape implements Cloneable, Serializable {
     private Color color;
     private int x,y,w,h;

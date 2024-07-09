@@ -12,7 +12,9 @@ import java.io.IOException;
  * ActionNanny listens for action events.
  * Send information to Officer.
  *
- * @author javiergs
+ * @author Anthony
+ * @author Blake
+ * @author Noa
  * @version 2.0
  */
 public class ActionNanny implements ActionListener {

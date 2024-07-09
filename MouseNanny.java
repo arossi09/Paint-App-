@@ -22,6 +22,10 @@ import java.util.Stack;
 	 * Send information to Officer.
 	 *
 	 * @author javiergs
+	 * @author Blake
+	 * @author Noa
+	 * @author Steven
+	 * @author Anthony
 	 * @version 2.0
 	 */
 	public class MouseNanny implements MouseListener, MouseMotionListener {

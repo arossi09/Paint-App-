@@ -2,7 +2,10 @@ package javiergs.gui.paint.gamma;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+/**
+ * @aythor anthony
+ * @version 3.0
+ */
 public class KeyboardListener implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {

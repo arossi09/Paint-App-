@@ -1,7 +1,10 @@
 package javiergs.gui.paint.gamma;
 
 import java.awt.*;
-
+/**
+ * @aythor anthony
+ * @version 3.0
+ */
 public class Box extends Shape{
     @Override
     public void draw(Graphics g) {
