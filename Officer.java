@@ -79,6 +79,8 @@ public class Officer {
 		return box;
 	}
 
+
+
 	public static void setBox(int x, int y, int w, int h, Color color){
 		box.setX(x);
 		box.setW(w);
@@ -230,6 +232,11 @@ public class Officer {
 		selectedShape = null;
 
 	}
+
+	public static Shape getSelectedShape(){
+		return selectedShape;
+	}
+
 
 	public static void setShape(String shape) {
 		Officer.shape = shape;
