@@ -283,6 +283,7 @@ public class Officer {
 		drawPanel = d;
 	}
 
+
 	public static void CreateMenu(MainHomework hw){
 
 		ActionNanny actionNanny = new ActionNanny();
