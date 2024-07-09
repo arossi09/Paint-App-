@@ -11,8 +11,9 @@ import java.util.Stack;
  * Send information to Officer.
  *
  * @author javiergs
- * @author
+ * @author Noa
  * @author Blake Masters
+ *
  *
  * @version 2.0
  */

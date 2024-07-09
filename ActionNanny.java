@@ -71,15 +71,20 @@ public class ActionNanny implements ActionListener {
 					Officer.clearShapes();
 					Officer.clearDeletedShapes();
 					break;
+				default:
+					System.out.println(actionCommand);
+					Officer.setShape(actionCommand);
+					break;
+			}
+		}else if(e.getSource() instanceof JButton){
+			JButton button = (JButton) e.getSource();
+			String actionCommand = button.getActionCommand();
+			switch (actionCommand){
 				case "About":
 					Officer.aboutDialog();
 					break;
 				case "Close":
 					Officer.closeDialog();
-					break;
-				default:
-					System.out.println(actionCommand);
-					Officer.setShape(actionCommand);
 					break;
 			}
 		}

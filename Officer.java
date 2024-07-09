@@ -10,6 +10,10 @@ import java.util.Stack;
  * And communicates to the DrawPanel when a repaint is needed.
  *
  * @author javiergs
+ * @author Blake
+ * @author Steven
+ * @author Anthony
+ * @author Noa
  * @version 1.0
  */
 public class Officer {
@@ -290,6 +294,7 @@ public class Officer {
 
 	public static void aboutDialog(){
 		dialog.setVisible(true);
+
 	}
 
 	public static void closeDialog(){
@@ -299,6 +304,7 @@ public class Officer {
 	public static void CreateMenu(MainHomework hw){
 
 		ActionNanny actionNanny = new ActionNanny();
+
 
 		JMenu colorMenu = new JMenu("Colors");
 		ButtonGroup colorGroup = new ButtonGroup();
@@ -311,6 +317,7 @@ public class Officer {
 			colorGroup.add(colorItem);
 			colorMenu.add(colorItem);
 		}
+
 
 		JMenu file = new JMenu("File");
 		JMenuItem newFile = new JMenuItem("new");
@@ -379,7 +386,7 @@ public class Officer {
 		about.addActionListener(actionNanny);
 		dialog = new JDialog(hw, "About");
 		dialog.setLayout(new FlowLayout());
-		dialog.setSize(200, 100);
+		dialog.setSize(400, 100);
 
 		JLabel aboutLabel = new JLabel("About: This is a shape painting application.");
 		dialog.add(aboutLabel);
