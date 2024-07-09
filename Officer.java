@@ -23,6 +23,7 @@ public class Officer {
 	static Shape clipBoardShape;
 
 	static ArcOutline arc = new ArcOutline();
+	static Line line = new Line();
 	static Stack<Shape> shapes = new Stack<Shape>();
 
 	static Stack<Shape> deletedShapes = new Stack<Shape>();
@@ -67,6 +68,7 @@ public class Officer {
 			newShape.setX(clipBoardShape.getX()+10);
 			newShape.setY(clipBoardShape.getY()+10);
 			shapes.add(newShape);
+			selectedShape = newShape.clone();
 			return;
 		}
 		System.out.println("No shape copied to clipboard to paste!");
@@ -75,6 +77,8 @@ public class Officer {
 	public static Box getBox() {
 		return box;
 	}
+
+
 
 	public static void setBox(int x, int y, int w, int h, Color color){
 		box.setX(x);
@@ -99,6 +103,13 @@ public class Officer {
 		arc.setH(h);
 		arc.setColor(color);
 	}
+	public static void setLine(int x, int y, int x2, int y2, Color color){
+		line.setX(x);
+		line.setX2(x2);
+		line.setY(y);
+		line.setY2(y2);
+		line.setColor(color);
+	}
 
 	public static CircleOutline getOval(){
 		return circle;
@@ -106,6 +117,9 @@ public class Officer {
 
 	public static ArcOutline getArc(){
 		return arc;
+	}
+	public static Line getLine(){
+		return line;
 	}
 
 
@@ -203,15 +217,25 @@ public class Officer {
 		return shape==null?"Rectangle":shape;
 	}
 
-	public static boolean getShapeAt(int x, int y) {
+	public static void getShapeAt(int x, int y) {
 		for (Shape shape : shapes) {
 			if (shape.contains(x, y)) {
+				System.out.println("Found shape!");
 				shape.setSelected(true);
-				return true;
+				selectedShape = shape;
+				return;
 			}
+			shape.setSelected(false);
 		}
-		return false;
+		System.out.println("No shape found!");
+		selectedShape = null;
+
 	}
+
+	public static Shape getSelectedShape(){
+		return selectedShape;
+	}
+
 
 	public static void setShape(String shape) {
 		Officer.shape = shape;
@@ -258,9 +282,11 @@ public class Officer {
 		drawPanel = d;
 	}
 
+
 	public static void CreateMenu(MainHomework hw){
 
 		ActionNanny actionNanny = new ActionNanny();
+
 		JMenu colorMenu = new JMenu("Colors");
 		ButtonGroup colorGroup = new ButtonGroup();
 		String[] colors = {"Black", "Red", "Blue", "Green", "Yellow", "Orange", "Pink"};
@@ -314,24 +340,27 @@ public class Officer {
 		paste.addActionListener(actionNanny);
 
 
-		copy.setMnemonic(KeyEvent.VK_P);
-		paste.setMnemonic(KeyEvent.VK_C );
+
 
 		JMenu shapes = new JMenu("Shapes");
 		ButtonGroup shapeGroup = new ButtonGroup();
 		JRadioButtonMenuItem rectangle = new JRadioButtonMenuItem("Rectangle");
 		JRadioButtonMenuItem circle = new JRadioButtonMenuItem("Circle");
 		JRadioButtonMenuItem arc = new JRadioButtonMenuItem("Arc");
+		JRadioButtonMenuItem line = new JRadioButtonMenuItem("Line");
 		shapes.add(rectangle);
 		shapes.add(circle);
 		shapes.add(arc);
+		shapes.add(line);
 		shapeGroup.add(rectangle);
 		shapeGroup.add(circle);
 		shapeGroup.add(arc);
+		shapeGroup.add(line);
 
 		rectangle.addActionListener(actionNanny);
 		circle.addActionListener(actionNanny);
 		arc.addActionListener(actionNanny);
+		line.addActionListener(actionNanny);
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(file);
