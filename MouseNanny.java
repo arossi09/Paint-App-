@@ -25,6 +25,7 @@ import java.util.Stack;
 		int tempx;
 		int tempy;
 		public void mouseClicked(MouseEvent e) {
+			Officer.getShapeAt(e.getX(), e.getY());
 		}
 
 		public void mouseEntered(MouseEvent e) {
@@ -49,6 +50,9 @@ import java.util.Stack;
 
 			int x = e.getX();
 			int y = e.getY();
+			if(x == tempx && y == tempy){
+				return;
+			}
 			int temp;
 			if(tempx > x){
 				temp = x;
