@@ -23,10 +23,12 @@ public class MainHomework extends JFrame {
 	}
 	
 	public MainHomework() {
+		KeyboardListener keyNanny = new KeyboardListener();
 		JPanel drawPanel = new DrawPanel();
 		MouseNanny mouseNanny = new MouseNanny(); // new line compared to version 1.0
 		drawPanel.addMouseListener(mouseNanny); // new line compared to version 1.0
 		drawPanel.addMouseMotionListener(mouseNanny);
+		addKeyListener(keyNanny);
 		Officer.setDrawPanel(drawPanel); // new line compared to version 2.0
 
 		setLayout(new BorderLayout());

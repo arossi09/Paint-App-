@@ -67,7 +67,6 @@ public class Officer {
 			Shape newShape = clipBoardShape.clone();
 			newShape.setX(clipBoardShape.getX()+10);
 			newShape.setY(clipBoardShape.getY()+10);
-			newShape.setColor(getColor());
 			shapes.add(newShape);
 			selectedShape = newShape.clone();
 			return;
@@ -287,6 +286,7 @@ public class Officer {
 	public static void CreateMenu(MainHomework hw){
 
 		ActionNanny actionNanny = new ActionNanny();
+
 		JMenu colorMenu = new JMenu("Colors");
 		ButtonGroup colorGroup = new ButtonGroup();
 		String[] colors = {"Black", "Red", "Blue", "Green", "Yellow", "Orange", "Pink"};
@@ -340,8 +340,7 @@ public class Officer {
 		paste.addActionListener(actionNanny);
 
 
-		copy.setMnemonic(KeyEvent.VK_P);
-		paste.setMnemonic(KeyEvent.VK_C );
+
 
 		JMenu shapes = new JMenu("Shapes");
 		ButtonGroup shapeGroup = new ButtonGroup();
