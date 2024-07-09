@@ -2,7 +2,6 @@ package javiergs.gui.paint.gamma;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.Stack;
 
@@ -234,6 +233,10 @@ public class Officer {
 
 	public static Shape getSelectedShape(){
 		return selectedShape;
+	}
+
+	public static void clearSelectedShape(){
+		selectedShape = null;
 	}
 
 

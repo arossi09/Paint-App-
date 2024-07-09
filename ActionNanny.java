@@ -31,6 +31,7 @@ public class ActionNanny implements ActionListener {
 				case "Yellow":
 				case "Orange":
 				case "Pink":
+
 					setColorForShape(actionCommand);
 					break;
 				case "undo":
@@ -110,7 +111,9 @@ public class ActionNanny implements ActionListener {
 			Officer.setColor(color);
 		} else {
 			Officer.getSelectedShape().setColor(color);
+			Officer.setColor(color);
 			Officer.tellYourBoss();
 		}
+
 	}
 }

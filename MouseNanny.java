@@ -52,7 +52,7 @@ import java.util.Stack;
 			Officer.setArc(0,0,0,0,Color.BLACK);
 			Officer.setOval(0,0,0,0,Color.BLACK);
 			Officer.setLine(0,0,0,0,Color.BLACK);
-
+			Officer.clearSelectedShape();
 
 
 			int x = e.getX();
