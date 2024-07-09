@@ -204,6 +204,8 @@ public class Officer {
 	private static int height;
 	private static JPanel drawPanel;
 
+	private static JDialog dialog;
+
 	public static Color getColor() {
 		return color==null?Color.BLACK:color;
 	}
@@ -286,6 +288,13 @@ public class Officer {
 		drawPanel = d;
 	}
 
+	public static void aboutDialog(){
+		dialog.setVisible(true);
+	}
+
+	public static void closeDialog(){
+		dialog.setVisible(false);
+	}
 
 	public static void CreateMenu(MainHomework hw){
 
@@ -366,11 +375,29 @@ public class Officer {
 		arc.addActionListener(actionNanny);
 		line.addActionListener(actionNanny);
 
+		JButton about = new JButton("About");
+		about.addActionListener(actionNanny);
+		dialog = new JDialog(hw, "About");
+		dialog.setLayout(new FlowLayout());
+		dialog.setSize(200, 100);
+
+		JLabel aboutLabel = new JLabel("About: This is a shape painting application.");
+		dialog.add(aboutLabel);
+
+		JButton aboutClose = new JButton("Close");
+		aboutClose.addActionListener(actionNanny);
+		dialog.add(aboutClose);
+		dialog.setLocationRelativeTo(hw);
+//		dialog.setVisible(true);
+
+
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(file);
 		menuBar.add(colorMenu);
 		menuBar.add(edit);
 		menuBar.add(shapes);
+		menuBar.add(about);
 
 
 		hw.setJMenuBar(menuBar);

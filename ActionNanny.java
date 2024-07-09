@@ -71,6 +71,12 @@ public class ActionNanny implements ActionListener {
 					Officer.clearShapes();
 					Officer.clearDeletedShapes();
 					break;
+				case "About":
+					Officer.aboutDialog();
+					break;
+				case "Close":
+					Officer.closeDialog();
+					break;
 				default:
 					System.out.println(actionCommand);
 					Officer.setShape(actionCommand);
