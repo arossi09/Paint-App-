@@ -1,5 +1,4 @@
 package javiergs.gui.paint.gamma;
-
 import java.awt.*;
 
 public class ArcOutline extends Shape{

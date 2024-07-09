@@ -216,18 +216,19 @@ public class Officer {
 		return shape==null?"Rectangle":shape;
 	}
 
-	public static void getShapeAt(int x, int y) {
+	public static boolean getShapeAt(int x, int y) {
 		for (Shape shape : shapes) {
 			if (shape.contains(x, y)) {
 				System.out.println("Found shape!");
 				shape.setSelected(true);
 				selectedShape = shape;
-				return;
+				return true;
 			}
 			shape.setSelected(false);
 		}
 		System.out.println("No shape found!");
 		selectedShape = null;
+		return false;
 
 	}
 

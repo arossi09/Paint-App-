@@ -27,6 +27,7 @@ import java.util.Stack;
 
 		int tempx;
 		int tempy;
+		Boolean movingFlag = false;
 		public void mouseClicked(MouseEvent e) {
 			Officer.getShapeAt(e.getX(), e.getY());
 		}
@@ -40,23 +41,20 @@ import java.util.Stack;
 		public void mousePressed(MouseEvent e) {
 			tempx = e.getX();
 			tempy = e.getY();
-			//TODO: Choose between pressed and clicked for selection
-			// either should look like the following
-			// select = Officer.getShapeAt(tempx, tempy);
 		}
 
 		public void mouseReleased(MouseEvent e) {
-			//TODO: Set global selected boolean to prevent this on release
 			Officer.setErased(false);
 			Officer.setBox(0,0,0,0, Color.BLACK);
 			Officer.setArc(0,0,0,0,Color.BLACK);
 			Officer.setOval(0,0,0,0,Color.BLACK);
 			Officer.setLine(0,0,0,0,Color.BLACK);
-			Officer.clearSelectedShape();
 
 
 			int x = e.getX();
 			int y = e.getY();
+			int xd = x - tempx;
+			int yd = y - tempy;
 			if(x == tempx && y == tempy){
 				return;
 			}
@@ -71,19 +69,27 @@ import java.util.Stack;
 				y = tempy;
 				tempy = temp;
 			}
+
+
 			int xdif = Math.abs(x - tempx);
 			int ydif = Math.abs(y - tempy);
-			if(Officer.getShape().equals("Rectangle")){
-				Officer.pushToStack(new Rectangle(tempx, tempy, xdif, ydif, Officer.getColor()));
+			if(movingFlag){
+				System.out.println(tempx - x);
+				Officer.getSelectedShape().setX(Officer.getSelectedShape().getX() + xd);
+				Officer.getSelectedShape().setY(Officer.getSelectedShape().getY() + yd);
 			}
-			else if(Officer.getShape().equals("Circle")){
-				Officer.pushToStack(new Circle(tempx, tempy, xdif, ydif, Officer.getColor()));
-			}
-			else if(Officer.getShape().equals("Arc")){
-				Officer.pushToStack(new Arc(tempx, tempy, xdif, ydif, Officer.getColor()));
-			}
-			else if(Officer.getShape().equals("Line")){
-				Officer.pushToStack(new Line(tempx, tempy, x , y, 1,  Officer.getColor()));
+			else {
+				if (Officer.getShape().equals("Rectangle")) {
+					Officer.pushToStack(new Rectangle(tempx, tempy, xdif, ydif, Officer.getColor()));
+				} else if (Officer.getShape().equals("Circle")) {
+					Officer.pushToStack(new Circle(tempx, tempy, xdif, ydif, Officer.getColor()));
+				} else if (Officer.getShape().equals("Arc")) {
+					Officer.pushToStack(new Arc(tempx, tempy, xdif, ydif, Officer.getColor()));
+				} else if (Officer.getShape().equals("Line")) {
+					Officer.pushToStack(new Line(tempx, tempy, x, y, 1, Officer.getColor()));
+				}
+
+
 			}
 
 			Officer.tellYourBoss();
@@ -97,29 +103,32 @@ import java.util.Stack;
 			int dragy = tempy > y ? y : tempy;
 			int xdif = Math.abs(x - tempx);
 			int ydif = Math.abs(y - tempy);
-			if(Officer.getShape().equals("Rectangle")){
-				Officer.setBox(dragx, dragy, xdif, ydif, Officer.getColor());
-				Officer.setOval(0,0,0,0,Officer.getColor());
-				Officer.setArc(0,0,0,0,Officer.getColor());
-				Officer.setLine(0,0,0,0, Officer.getColor());
+			if(Officer.getShapeAt(tempx, tempy)){
+				movingFlag = true;
 			}
-			else if(Officer.getShape().equals("Circle")){
-				Officer.setOval(dragx, dragy, xdif, ydif, Officer.getColor());
-				Officer.setBox(0,0,0, 0, Officer.getColor());
-				Officer.setArc(0,0,0,0,Officer.getColor());
-				Officer.setLine(0,0,0,0, Officer.getColor());
-			}
-			else if(Officer.getShape().equals("Arc")){
-				Officer.setArc(dragx, dragy, xdif, ydif, Officer.getColor());
-				Officer.setBox(0,0,0, 0, Officer.getColor());
-				Officer.setOval(0,0,0,0,Officer.getColor());
-				Officer.setLine(0,0,0,0, Officer.getColor());
-			}
-			else if(Officer.getShape().equals("Line")){
-				Officer.setLine(tempx, tempy, x , y , Officer.getColor());
-				Officer.setArc(0,0,0,0,Officer.getColor());
-				Officer.setBox(0,0,0, 0, Officer.getColor());
-				Officer.setOval(0,0,0,0,Officer.getColor());
+			else {
+				movingFlag = false;
+				if (Officer.getShape().equals("Rectangle")) {
+					Officer.setBox(dragx, dragy, xdif, ydif, Officer.getColor());
+					Officer.setOval(0, 0, 0, 0, Officer.getColor());
+					Officer.setArc(0, 0, 0, 0, Officer.getColor());
+					Officer.setLine(0, 0, 0, 0, Officer.getColor());
+				} else if (Officer.getShape().equals("Circle")) {
+					Officer.setOval(dragx, dragy, xdif, ydif, Officer.getColor());
+					Officer.setBox(0, 0, 0, 0, Officer.getColor());
+					Officer.setArc(0, 0, 0, 0, Officer.getColor());
+					Officer.setLine(0, 0, 0, 0, Officer.getColor());
+				} else if (Officer.getShape().equals("Arc")) {
+					Officer.setArc(dragx, dragy, xdif, ydif, Officer.getColor());
+					Officer.setBox(0, 0, 0, 0, Officer.getColor());
+					Officer.setOval(0, 0, 0, 0, Officer.getColor());
+					Officer.setLine(0, 0, 0, 0, Officer.getColor());
+				} else if (Officer.getShape().equals("Line")) {
+					Officer.setLine(tempx, tempy, x, y, Officer.getColor());
+					Officer.setArc(0, 0, 0, 0, Officer.getColor());
+					Officer.setBox(0, 0, 0, 0, Officer.getColor());
+					Officer.setOval(0, 0, 0, 0, Officer.getColor());
+				}
 			}
 			Officer.tellYourBoss();
 		}

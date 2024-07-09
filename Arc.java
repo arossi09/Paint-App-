@@ -1,5 +1,4 @@
 package javiergs.gui.paint.gamma;
-
 import java.awt.*;
 
 public class Arc extends Shape{
@@ -20,7 +19,6 @@ public class Arc extends Shape{
     @Override
     public Arc clone() {
         Arc clone = (Arc) super.clone();
-        // TODO: copy mutable state here, so the clone can't change the internals of the original
         return clone;
     }
 
@@ -28,6 +26,5 @@ public class Arc extends Shape{
     public boolean contains(int x, int y) {
         return (x >= this.getX() && x <= this.getX() + this.getW() &&
                 y >= this.getY() && y <= this.getY() + this.getH());
-        // TODO: Make complex version of half of oval
     }
 }
