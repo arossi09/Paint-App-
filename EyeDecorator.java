@@ -14,8 +14,8 @@ public class EyeDecorator extends  ShapeDecorator{
 
             // Draw eyes
             g.setColor(Color.WHITE);
-            g.fillOval(centerX - 10, centerY - 10, 15, 15);
-            g.fillOval(centerX + 10, centerY - 10, 15, 15);
+            g.fillOval(centerX - 20, centerY - 10, 20, 20);
+            g.fillOval(centerX + 20, centerY - 10, 20, 20);
 
         }
     }
