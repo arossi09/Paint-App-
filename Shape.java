@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author blake
  * @version 3.0
  */
-public abstract class Shape implements Cloneable, Serializable {
+public abstract class Shape extends ShapeComponent implements Cloneable, Serializable {
     private Color color;
     private int x,y,w,h;
 

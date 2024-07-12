@@ -228,6 +228,8 @@ public class Officer {
 				System.out.println("Found shape!");
 				shape.setSelected(true);
 				selectedShape = shape;
+				shape.setStatus(shape.getStatus() + 1);
+				updateShape(shape);
 				return true;
 			}
 			shape.setSelected(false);
@@ -236,6 +238,13 @@ public class Officer {
 		selectedShape = null;
 		return false;
 
+	}
+
+	public static void updateShape(Shape shape){
+		if(shape.getStatus() == 1){
+			FaceDecorator face = new FaceDecorator();
+			face.add(shape);
+		}
 	}
 
 	public static Shape getSelectedShape(){
