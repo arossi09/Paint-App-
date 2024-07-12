@@ -17,6 +17,7 @@ public class KeyboardListener implements KeyListener {
         if (e.isControlDown()) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_C:
+
                     Officer.Copy();
                     break;
                 case KeyEvent.VK_V:

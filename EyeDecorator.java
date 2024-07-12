@@ -2,7 +2,7 @@ package javiergs.gui.paint.gamma;
 
 import java.awt.*;
 
-public class FaceDecorator extends  ShapeDecorator{
+public class EyeDecorator extends  ShapeDecorator{
 
 
     @Override
@@ -14,11 +14,24 @@ public class FaceDecorator extends  ShapeDecorator{
 
             // Draw eyes
             g.setColor(Color.WHITE);
-            g.fillOval(centerX - 10, centerY - 10, 5, 5);
-            g.fillOval(centerX + 10, centerY - 10, 5, 5);
+            g.fillOval(centerX - 10, centerY - 10, 15, 15);
+            g.fillOval(centerX + 10, centerY - 10, 15, 15);
 
-            // Draw mouth
-            g.drawArc(centerX - 10, centerY, 20, 10, 0, -180);
         }
+    }
+
+    @Override
+    public void setSelected(boolean b) {
+
+    }
+
+    @Override
+    public boolean contains(int x, int y) {
+        return false;
+    }
+
+    @Override
+    public void setColor(Color color) {
+
     }
 }

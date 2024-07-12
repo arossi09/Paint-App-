@@ -21,15 +21,15 @@ public class Officer {
 	static Box box = new Box();
 	static CircleOutline circle = new CircleOutline();
 
-	static Shape selectedShape;
+	static ShapeComponent selectedShape;
 
 	static Shape clipBoardShape;
 
 	static ArcOutline arc = new ArcOutline();
 	static Line line = new Line();
-	static Stack<Shape> shapes = new Stack<Shape>();
+	static Stack<ShapeComponent> shapes = new Stack<ShapeComponent>();
 
-	static Stack<Shape> deletedShapes = new Stack<Shape>();
+	static Stack<ShapeComponent> deletedShapes = new Stack<ShapeComponent>();
 
 	static boolean erased = false;
 
@@ -52,7 +52,7 @@ public class Officer {
 		if(approvedValue == JFileChooser.APPROVE_OPTION){
 			File file = fileChooser.getSelectedFile();
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-			shapes = (Stack<Shape>) in.readObject();
+			shapes = (Stack<ShapeComponent>) in.readObject();
 		}
 	}
 
@@ -126,7 +126,7 @@ public class Officer {
 	}
 
 
-	public static Stack<Shape> getStack() {
+	public static Stack<ShapeComponent> getStack() {
 		return shapes;
 	}
 
@@ -138,18 +138,18 @@ public class Officer {
 		deletedShapes.clear();
 	}
 
-	public static Stack<Shape> getDeletedShapes() {
+	public static Stack<ShapeComponent> getDeletedShapes() {
 		return deletedShapes;
 	}
 
-	public static void pushToStack(Shape shape){
+	public static void pushToStack(ShapeComponent shape){
 		shapes.push(shape);
 	}
 
-	public static void pushToDeleted(Shape shape) {deletedShapes.push(shape);}
+	public static void pushToDeleted(ShapeComponent shape) {deletedShapes.push(shape);}
 
 	public static void popFromStack(){
-		pushToDeleted(shapes.pop());
+		pushToDeleted((Shape) shapes.pop());
 	}
 
 	public static void undo(){
@@ -183,7 +183,7 @@ public class Officer {
 		}
 	}
 
-	public static void loopStacks (Stack<Shape> source, Stack<Shape> dest){
+	public static void loopStacks (Stack<ShapeComponent> source, Stack<ShapeComponent> dest){
 		while (!source.isEmpty()) {
 			dest.push(source.pop());
 		}
@@ -194,7 +194,7 @@ public class Officer {
 	}
 
 	public static void erase() {
-		Officer.loopStacks(Officer.getDeletedShapes(), new Stack<Shape>()); //clear deleted
+		Officer.loopStacks(Officer.getDeletedShapes(), new Stack<ShapeComponent>()); //clear deleted
 		Officer.loopStacks(shapes, deletedShapes);
 		Officer.tellYourBoss();
 
@@ -223,11 +223,11 @@ public class Officer {
 	}
 
 	public static boolean getShapeAt(int x, int y) {
-		for (Shape shape : shapes) {
+		for (ShapeComponent shape : shapes) {
 			if (shape.contains(x, y)) {
 				System.out.println("Found shape!");
 				shape.setSelected(true);
-				selectedShape = shape;
+				selectedShape =  shape;
 				shape.setStatus(shape.getStatus() + 1);
 				updateShape(shape);
 				return true;
@@ -240,14 +240,17 @@ public class Officer {
 
 	}
 
-	public static void updateShape(Shape shape){
+	public static void updateShape(ShapeComponent shape){
 		if(shape.getStatus() == 1){
-			FaceDecorator face = new FaceDecorator();
-			face.add(shape);
+			EyeDecorator eyes = new EyeDecorator();
+			eyes.add(shape);
+			shapes.push(eyes);
+			Officer.tellYourBoss();
+
 		}
 	}
 
-	public static Shape getSelectedShape(){
+	public static ShapeComponent getSelectedShape(){
 		return selectedShape;
 	}
 
