@@ -9,9 +9,10 @@ public class ObserveStack<T> {
     private Stack<T> stack;
     private PropertyChangeSupport support;
 
-    public ObserveStack() {
+    public ObserveStack(PropertyChangeListener listener) {
         stack = new Stack<>();
         support = new PropertyChangeSupport(this);
+        addPropertyChangeListener(listener);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener p) {
