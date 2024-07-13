@@ -6,7 +6,12 @@ public class MouthDecorator extends ShapeDecorator{
 
     @Override
     public void draw(Graphics g) {
-
+        super.draw(g);
+        ShapeComponent shape = Officer.findOriginalShape(decoratedShape);
+        g.setColor(Color.RED);
+        int x = shape.getX();
+        int y = shape.getY();
+        g.drawArc(x, y + 10, 20, 10, 0, -180);
     }
 
     @Override

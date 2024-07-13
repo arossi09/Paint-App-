@@ -15,9 +15,9 @@ public class KeyboardListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.isControlDown()) {
+            System.out.println("Ctrl down");
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_C:
-
                     Officer.Copy();
                     break;
                 case KeyEvent.VK_V:

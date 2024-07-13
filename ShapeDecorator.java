@@ -5,8 +5,13 @@ import java.awt.*;
 abstract class ShapeDecorator extends ShapeComponent{
     protected ShapeComponent decoratedShape;
 
+    protected ShapeComponent lastShape;
+    public ShapeComponent getDecoratedShape() {
+        return decoratedShape;
+    }
+
     public void add(ShapeComponent s) {
-        this.decoratedShape = s;
+        decoratedShape = s;
     }
 
     public void draw(Graphics g) {
@@ -14,5 +19,13 @@ abstract class ShapeDecorator extends ShapeComponent{
             decoratedShape.draw(g);
         }
     }
+    public ShapeComponent getLast(){
+        return lastShape;
+    }
+
+    public void setLast(ShapeComponent last){
+        lastShape = last;
+    }
+
 
 }

@@ -65,10 +65,11 @@ public abstract class ShapeComponent  implements Cloneable, Serializable {
     public abstract boolean contains(int x, int y);
 
     public abstract void setColor(Color color);
+
     @Override
-    public Shape clone() {
+    public ShapeComponent clone() {
         try {
-            Shape clone = (Shape) super.clone();
+            ShapeComponent clone = (ShapeComponent) super.clone();
             // TODO: copy mutable state here, so the clone can't change the internals of the original
             return clone;
         } catch (CloneNotSupportedException e) {

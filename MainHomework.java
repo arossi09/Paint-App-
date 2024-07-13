@@ -27,13 +27,12 @@ public class MainHomework extends JFrame {
 	}
 	
 	public MainHomework() {
-		KeyboardListener keyNanny = new KeyboardListener();
+
 		JPanel drawPanel = new DrawPanel();
 		MouseNanny mouseNanny = new MouseNanny();
 		drawPanel.addMouseListener(mouseNanny);
 		drawPanel.addMouseMotionListener(mouseNanny);
-		addKeyListener(keyNanny);
-		Officer.setDrawPanel(drawPanel); // new line compared to version 2.0
+		Officer.setDrawPanel(drawPanel); // new line compared to version 2.
 		setLayout(new BorderLayout());
 		add(drawPanel, BorderLayout.CENTER);
 		Officer.CreateMenu(this);

@@ -21,9 +21,13 @@ public class Officer {
 	static Box box = new Box();
 	static CircleOutline circle = new CircleOutline();
 
-	static ShapeComponent selectedShape;
+	private static ShapeComponent selectedShape;
 
-	static Shape clipBoardShape;
+	private static ShapeComponent clipBoardShape;
+
+	public static void setSelectedShape(ShapeComponent selectedShape) {
+		Officer.selectedShape = selectedShape;
+	}
 
 	static ArcOutline arc = new ArcOutline();
 	static Line line = new Line();
@@ -67,7 +71,7 @@ public class Officer {
 
 	public static void Paste(){
 		if(clipBoardShape != null){
-			Shape newShape = clipBoardShape.clone();
+			ShapeComponent newShape = clipBoardShape.clone();
 			newShape.setX(clipBoardShape.getX()+10);
 			newShape.setY(clipBoardShape.getY()+10);
 			shapes.add(newShape);
@@ -148,8 +152,12 @@ public class Officer {
 
 	public static void pushToDeleted(ShapeComponent shape) {deletedShapes.push(shape);}
 
-	public static void popFromStack(){
-		pushToDeleted((Shape) shapes.pop());
+	public static void popFromStack(ShapeComponent shape){
+		for(int i = 0; i < shapes.size(); i++){
+			if(shapes.get(i).equals(shape)){
+				shapes.remove(i);
+			}
+		}
 	}
 
 	public static void undo(){
@@ -222,30 +230,65 @@ public class Officer {
 		return shape==null?"Rectangle":shape;
 	}
 
+	public static ShapeComponent findOriginalShape(ShapeComponent shape){
+		ShapeComponent tempShape = shape.clone();
+		while(tempShape instanceof ShapeDecorator){
+			tempShape = ((ShapeDecorator) tempShape).lastShape;
+		}
+		return tempShape;
+	}
+
 	public static boolean getShapeAt(int x, int y) {
+
 		for (ShapeComponent shape : shapes) {
-			if (shape.contains(x, y)) {
-				System.out.println("Found shape!");
-				shape.setSelected(true);
-				selectedShape =  shape;
-				shape.setStatus(shape.getStatus() + 1);
-				updateShape(shape);
+			ShapeComponent originalShape;
+
+			if(shape instanceof ShapeDecorator){
+				originalShape = findOriginalShape(shape);
+			}else{
+				originalShape = shape;
+			}
+
+			if (originalShape.contains(x, y)) {
+				System.out.println("Selected shape " + originalShape );
+				if(originalShape == selectedShape){
+					originalShape.setStatus(originalShape.getStatus() + 1);
+					updateShape(shape);
+				}
+				originalShape.setSelected(true);
+				selectedShape = originalShape;
 				return true;
 			}
-			shape.setSelected(false);
+			originalShape.setSelected(false);
 		}
-		System.out.println("No shape found!");
 		selectedShape = null;
 		return false;
 
 	}
 
 	public static void updateShape(ShapeComponent shape){
-		if(shape.getStatus() == 1){
+		if(findOriginalShape(shape).getStatus() == 1){
 			EyeDecorator eyes = new EyeDecorator();
+			eyes.setLast(shape);
 			eyes.add(shape);
+			shapes.remove(shape);
 			shapes.push(eyes);
 			Officer.tellYourBoss();
+
+		}else if(findOriginalShape(shape).getStatus() == 2){
+			MouthDecorator mouth = new MouthDecorator();
+			mouth.setLast(shape);
+			mouth.add(shape);
+			shapes.remove(shape);
+			shapes.push(mouth);
+			Officer.tellYourBoss();
+			//way to get shape decortator eyes
+
+		}else if(shape.getStatus() == 3){
+			//way to get shape decorator mouth
+
+		}else if(shape.getStatus() == 4){
+			//way to get all and clear
 
 		}
 	}
@@ -394,6 +437,7 @@ public class Officer {
 		arc.addActionListener(actionNanny);
 		line.addActionListener(actionNanny);
 
+
 		JButton about = new JButton("About");
 		about.addActionListener(actionNanny);
 		dialog = new JDialog(hw, "About");
@@ -407,7 +451,8 @@ public class Officer {
 		aboutClose.addActionListener(actionNanny);
 		dialog.add(aboutClose);
 		dialog.setLocationRelativeTo(hw);
-//		dialog.setVisible(true);
+		KeyboardListener listener = new KeyboardListener();
+		about.addKeyListener(listener);
 
 
 
@@ -417,6 +462,7 @@ public class Officer {
 		menuBar.add(edit);
 		menuBar.add(shapes);
 		menuBar.add(about);
+
 
 
 		hw.setJMenuBar(menuBar);

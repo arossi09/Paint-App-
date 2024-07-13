@@ -82,6 +82,8 @@ import java.util.Stack;
 				System.out.println(tempx - x);
 				Officer.getSelectedShape().setX(Officer.getSelectedShape().getX() + xd);
 				Officer.getSelectedShape().setY(Officer.getSelectedShape().getY() + yd);
+				movingFlag = false;
+				Officer.setSelectedShape(null);
 			}
 			else {
 				if (Officer.getShape().equals("Rectangle")) {
@@ -108,6 +110,8 @@ import java.util.Stack;
 			int dragy = tempy > y ? y : tempy;
 			int xdif = Math.abs(x - tempx);
 			int ydif = Math.abs(y - tempy);
+
+			Officer.setSelectedShape(null);
 			if(Officer.getShapeAt(tempx, tempy)){
 				movingFlag = true;
 			}

@@ -78,6 +78,7 @@ public class ActionNanny implements ActionListener {
 					Officer.setShape(actionCommand);
 					break;
 			}
+
 		}else if(e.getSource() instanceof JButton){
 			JButton button = (JButton) e.getSource();
 			String actionCommand = button.getActionCommand();
@@ -89,8 +90,13 @@ public class ActionNanny implements ActionListener {
 					Officer.closeDialog();
 					break;
 			}
+
+
 		}
+
+
 	}
+
 
 	private void setColorForShape(String colorCommand) {
 		Color color;
