@@ -267,30 +267,53 @@ public class Officer {
 	}
 
 	public static void updateShape(ShapeComponent shape){
-		if(findOriginalShape(shape).getStatus() == 1){
-			EyeDecorator eyes = new EyeDecorator();
-			eyes.setLast(shape);
-			eyes.add(shape);
-			shapes.remove(shape);
-			shapes.push(eyes);
-			Officer.tellYourBoss();
+		ShapeComponent originalShape = findOriginalShape(shape);
 
-		}else if(findOriginalShape(shape).getStatus() == 2){
-			MouthDecorator mouth = new MouthDecorator();
-			mouth.setLast(shape);
-			mouth.add(shape);
-			shapes.remove(shape);
-			shapes.push(mouth);
-			Officer.tellYourBoss();
-			//way to get shape decortator eyes
-
-		}else if(shape.getStatus() == 3){
-			//way to get shape decorator mouth
-
-		}else if(shape.getStatus() == 4){
-			//way to get all and clear
-
+		if (originalShape instanceof Arc) {
+			if (originalShape.getStatus() == 1) {
+				EyeDecorator eyes = new EyeDecorator();
+				eyes.setLast(shape);
+				eyes.add(shape);
+				shapes.remove(shape);
+				shapes.push(eyes);
+			} else if (originalShape.getStatus() == 2) {
+				HatDecorator hat = new HatDecorator();
+				hat.setLast(shape);
+				hat.add(shape);
+				shapes.remove(shape);
+				shapes.push(hat);
+			} else if (originalShape.getStatus() == 3) {
+				originalShape.setStatus(0);
+				shapes.remove(shape);
+				shapes.push(originalShape);
+			}
+		} else {
+			if (originalShape.getStatus() == 1) {
+				EyeDecorator eyes = new EyeDecorator();
+				eyes.setLast(shape);
+				eyes.add(shape);
+				shapes.remove(shape);
+				shapes.push(eyes);
+			} else if (originalShape.getStatus() == 2) {
+				MouthDecorator mouth = new MouthDecorator();
+				mouth.setLast(shape);
+				mouth.add(shape);
+				shapes.remove(shape);
+				shapes.push(mouth);
+			} else if (originalShape.getStatus() == 3) {
+				HatDecorator hat = new HatDecorator();
+				hat.setLast(shape);
+				hat.add(shape);
+				shapes.remove(shape);
+				shapes.push(hat);
+			}else {
+				originalShape.setStatus(0);
+				shapes.remove(shape);
+				shapes.push(originalShape);
+			}
 		}
+
+		Officer.tellYourBoss();
 	}
 
 	public static ShapeComponent getSelectedShape(){

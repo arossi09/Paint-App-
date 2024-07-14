@@ -9,24 +9,35 @@ public class EyeDecorator extends  ShapeDecorator{
     public void draw(Graphics g) {
         super.draw(g);
         ShapeComponent shape = Officer.findOriginalShape(decoratedShape);
-        int centerX = shape.getX() + shape.getW() / 2;
-        int centerY = shape.getY() + shape.getH() / 2;
 
-        int eyeWidth = shape.getW() / 5;
-        int eyeHeight = shape.getH() / 5;
-        int eyeOffsetX = shape.getW() / 4;
-        int eyeOffsetY = shape.getH() / 4;
-        int pupilWidth = eyeWidth - 10;
-        int pupilHeight = eyeHeight - 10;
+        // Draw eyes
+        int x = shape.getX();
+        int y = shape.getY();
+        int w = shape.getW();
+        int h = shape.getH();
+
+
+        int eyeWidth = w / 5;
+        int eyeHeight = h / 5;
+        int eye1X = x + w / 4 - eyeWidth / 2;
+        int eye2X = x + 3 * w / 4 - eyeWidth / 2;
+        int eyeY = y + h / 4 - eyeHeight / 2;
+
 
         g.setColor(Color.WHITE);
-        g.fillOval(centerX - eyeOffsetX, centerY - eyeOffsetY, eyeWidth, eyeHeight);
-        g.fillOval(centerX + eyeOffsetX - eyeWidth, centerY - eyeOffsetY, eyeWidth, eyeHeight);
+        g.fillOval(eye1X, eyeY, eyeWidth, eyeHeight);
+        g.fillOval(eye2X, eyeY, eyeWidth, eyeHeight);
+
+        int pupilWidth = eyeWidth / 3;
+        int pupilHeight = eyeHeight / 3;
 
 
-        g.setColor(new Color(0x06E1FD));
-        g.fillOval(centerX - eyeOffsetX, centerY - eyeOffsetY, pupilWidth, pupilHeight);
-        g.fillOval(centerX + eyeOffsetX - eyeWidth, centerY - eyeOffsetY, pupilWidth,  pupilHeight);
+        int pupil1X = eye1X + 2 * eyeWidth / 3 - pupilWidth / 2;
+        int pupil2X = eye2X + eyeWidth / 3 - pupilWidth / 2;
+        int pupilY = eyeY + eyeHeight / 2 - pupilHeight / 2;
+        g.setColor(new Color(0x95F7FC));
+        g.fillOval(pupil1X, pupilY, pupilWidth, pupilHeight);
+        g.fillOval(pupil2X, pupilY, pupilWidth, pupilHeight);
     }
 
     @Override

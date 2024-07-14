@@ -8,10 +8,20 @@ public class MouthDecorator extends ShapeDecorator{
     public void draw(Graphics g) {
         super.draw(g);
         ShapeComponent shape = Officer.findOriginalShape(decoratedShape);
-        g.setColor(Color.RED);
+
+
         int x = shape.getX();
         int y = shape.getY();
-        g.drawArc(x, y + 10, 20, 10, 0, -180);
+        int w = shape.getW();
+        int h = shape.getH();
+
+        int mouthWidth = w / 2;
+        int mouthHeight = h / 5;
+        int mouthX = x + w / 4;
+        int mouthY = y + 2 * h / 3;
+
+        g.setColor(Color.DARK_GRAY);
+        g.fillArc(mouthX, mouthY, mouthWidth, mouthHeight, 0, -180);
     }
 
     @Override
