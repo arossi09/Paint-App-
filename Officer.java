@@ -47,6 +47,9 @@ public class Officer extends PropertyChangeSupport {
 		}
 	}
 
+	public static void observerUpdate(){
+		getInstance().firePropertyChange("observerUpdate", null, shapes);
+	}
 	public static void setSelectedShape(ShapeComponent selectedShape) {
 		Officer.selectedShape = selectedShape;
 	}

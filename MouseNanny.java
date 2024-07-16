@@ -84,6 +84,7 @@ import java.util.Stack;
 				Officer.getSelectedShape().setY(Officer.getSelectedShape().getY() + yd);
 				movingFlag = false;
 				Officer.setSelectedShape(null);
+				Officer.observerUpdate();
 			}
 			else {
 				if (Officer.getShape().equals("Rectangle")) {

@@ -38,6 +38,7 @@ public class EyeDecorator extends  ShapeDecorator{
         g.setColor(new Color(0x95F7FC));
         g.fillOval(pupil1X, pupilY, pupilWidth, pupilHeight);
         g.fillOval(pupil2X, pupilY, pupilWidth, pupilHeight);
+        Officer.observerUpdate();
     }
 
     @Override

@@ -15,12 +15,16 @@ public class TextArea extends JPanel implements PropertyChangeListener{
     public TextArea(){
         this.setSize(100, 500);
         setBackground(Color.LIGHT_GRAY);
+
         text = new JTextArea();
         text.setMargin(new Insets(0, 0, 5, 5));
-        text.setPreferredSize(new Dimension( 300, 500));
+        text.setPreferredSize(new Dimension( 350, 500));
+        text.setLineWrap(true);
+        text.setWrapStyleWord(true);
         text.setEnabled(true);
         text.setVisible(true);
-        add(text);
+        JScrollPane scrollPane = new JScrollPane(text);
+        add(scrollPane);
     }
 
     @Override
@@ -29,11 +33,16 @@ public class TextArea extends JPanel implements PropertyChangeListener{
             text.setText("");
             Stack<ShapeComponent> temp = (Stack<ShapeComponent>) e.getNewValue();
             Iterator<ShapeComponent> iter = temp.iterator();
-            while(iter.hasNext()){
+            while(iter.hasNext()) {
                 ShapeComponent curShape = iter.next();
-                text.append(new String("<" + curShape.getClass().getSimpleName() + " width= " +
-                        curShape.getW() + " height= " + curShape.getH() + " fill " + curShape.color.getRGB() + " />\n"));
+                String objName = "<" + curShape.getClass().getSimpleName();
+                 if(curShape instanceof ShapeDecorator){
+                    curShape = Officer.findOriginalShape(curShape);
+                }
+                    text.append(new String(objName + " x = \"" + curShape.getX()
+                            + "\" y=\"" + curShape.getY() + "\" width= " + curShape.getW() + " height=\"" + curShape.getH()
+                            + " fill\"" + curShape.getColor().getRGB() + "\" />\n"));
+                }
             }
         }
     }
-}
