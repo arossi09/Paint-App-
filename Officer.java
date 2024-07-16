@@ -1,5 +1,6 @@
 package javiergs.gui.paint.gamma;
 
+import javax.lang.model.element.NestingKind;
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeListener;
@@ -28,8 +29,9 @@ public class Officer extends PropertyChangeSupport {
 
 	private static Officer instance;
 
+//	private static Stack<String> stack = new Stack<String>();
 	private Officer(){
-		super(null);
+		super(shapes);
 	};
 
 	public static Officer getInstance(){
@@ -168,11 +170,12 @@ public class Officer extends PropertyChangeSupport {
 
 	public static void pushToStack(ShapeComponent shape){
 		shapes.push(shape);
-		getInstance().firePropertyChange("shapeAdded", null, shape);
+		getInstance().firePropertyChange("shapeAdded", null, shapes);
 	}
 
 	public static void pushToDeleted(ShapeComponent shape) {deletedShapes.push(shape);
-		getInstance().firePropertyChange("shapeDeleted", null, shape);}
+		getInstance().firePropertyChange("shapeDeleted", null, shapes);
+		}
 
 	public static void popFromStack(ShapeComponent shape){
 		for(int i = 0; i < shapes.size(); i++){
