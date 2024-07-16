@@ -193,7 +193,7 @@ public class Officer extends PropertyChangeSupport {
 		if (erased) {
 			Officer.loopStacks(deletedShapes, shapes);
 			Officer.tellYourBoss();
-
+			Officer.observerUpdate();
 
 		} else {
 			if (shapes.isEmpty()){
@@ -210,6 +210,7 @@ public class Officer extends PropertyChangeSupport {
 		if (erased) {
 			Officer.loopStacks(shapes, deletedShapes);
 			Officer.tellYourBoss();
+			Officer.observerUpdate();
 		} else {
 			if (deletedShapes.isEmpty()){
 				return;
@@ -233,6 +234,7 @@ public class Officer extends PropertyChangeSupport {
 		Officer.loopStacks(Officer.getDeletedShapes(), new Stack<ShapeComponent>()); //clear deleted
 		Officer.loopStacks(shapes, deletedShapes);
 		Officer.tellYourBoss();
+		Officer.observerUpdate();
 
 	}
 
