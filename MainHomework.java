@@ -3,6 +3,8 @@ package javiergs.gui.paint.gamma;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * MainHomework creates a frame and adds three panels to it.
@@ -36,6 +38,9 @@ public class MainHomework extends JFrame {
 		setLayout(new BorderLayout());
 		add(drawPanel, BorderLayout.CENTER);
 		Officer.CreateMenu(this);
+		//TODO: Create TextAreaPanel and pass as listener
+		TextArea textPanel = new TextArea();
+		Officer.getInstance().addObserver(textPanel);
 
 
 	}

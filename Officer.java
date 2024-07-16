@@ -2,9 +2,10 @@ package javiergs.gui.paint.gamma;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeListener;
 import java.io.*;
 import java.util.Stack;
-
+import java.beans.PropertyChangeSupport;
 /**
  * Officer is a class that holds the data of the drawing application.
  * And communicates to the DrawPanel when a repaint is needed.
@@ -16,7 +17,7 @@ import java.util.Stack;
  * @author Noa
  * @version 1.0
  */
-public class Officer {
+public class Officer extends PropertyChangeSupport {
 
 	static Box box = new Box();
 	static CircleOutline circle = new CircleOutline();
@@ -24,6 +25,25 @@ public class Officer {
 	private static ShapeComponent selectedShape;
 
 	private static ShapeComponent clipBoardShape;
+
+	private static Officer instance;
+
+	private Officer(){
+		super(null);
+	};
+
+	public static Officer getInstance(){
+		if (instance == null){
+			instance = new Officer();
+		}
+		return instance;
+	}
+
+	public void addObserver(PropertyChangeListener p){
+		if (instance != null){
+			instance.addPropertyChangeListener(p);
+		}
+	}
 
 	public static void setSelectedShape(ShapeComponent selectedShape) {
 		Officer.selectedShape = selectedShape;
@@ -148,9 +168,11 @@ public class Officer {
 
 	public static void pushToStack(ShapeComponent shape){
 		shapes.push(shape);
+		getInstance().firePropertyChange("shapeAdded", null, shape);
 	}
 
-	public static void pushToDeleted(ShapeComponent shape) {deletedShapes.push(shape);}
+	public static void pushToDeleted(ShapeComponent shape) {deletedShapes.push(shape);
+		getInstance().firePropertyChange("shapeDeleted", null, shape);}
 
 	public static void popFromStack(ShapeComponent shape){
 		for(int i = 0; i < shapes.size(); i++){
