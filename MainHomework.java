@@ -40,6 +40,7 @@ public class MainHomework extends JFrame {
 		Officer.CreateMenu(this);
 		//TODO: Create TextAreaPanel and pass as listener
 		TextArea textPanel = new TextArea();
+		add(textPanel, BorderLayout.WEST);
 		Officer.getInstance().addObserver(textPanel);
 
 
