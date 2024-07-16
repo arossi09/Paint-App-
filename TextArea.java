@@ -38,6 +38,7 @@ public class TextArea extends JPanel implements PropertyChangeListener{
                 String objName = "<" + curShape.getClass().getSimpleName();
                  if(curShape instanceof ShapeDecorator){
                     curShape = Officer.findOriginalShape(curShape);
+                    objName = objName.concat(" " + curShape.getClass().getSimpleName());
                 }
                     text.append(new String(objName + " x = \"" + curShape.getX()
                             + "\" y=\"" + curShape.getY() + "\" width= " + curShape.getW() + " height=\"" + curShape.getH()
